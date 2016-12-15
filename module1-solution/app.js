@@ -10,14 +10,13 @@ function Module1Controller ($scope) {
   $scope.result = "";
 
   $scope.getEatFeedback = function () {
-    var f = compute($scope.eats);
+    var f = compute($scope.eats.replace(/\s+/g, ''));
     $scope.result = f;
   }
 
   function compute(string) {
-    var arraySize = string.split(',').length;
-    if (arraySize > 0) {
-      return arraySize < 4 ? "Enjoy!" : "Too much!";
+    if (string.length > 0) {
+      return string.split(',').length < 4 ? "Enjoy!" : "Too much!";
     } else {
       return "Please enter data first";
     }
